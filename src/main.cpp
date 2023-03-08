@@ -13,17 +13,17 @@ I2CSlave slave(I2C_SDA, I2C_SCL);
 ///////////////////////////////////////////
 // Créer un objet debug_led à partir de la classe DigitalOut pour vous aider dans le debuggage
 ///////////////////////////////////////////
-
+DigitalOut debug_led(LED1);
 
 ///////////////////////////////////////////
 // Créer un objet moteur à partir de la classe PwmOut
 ///////////////////////////////////////////
-
+PwmOut moteur(D2);
 
 ///////////////////////////////////////////
 // Créer une variable pour la machine à état qui gére le moteur (OFF ou Activé)
 ///////////////////////////////////////////
-
+uint8_t onoff;
 
 int main() {
   char read_buffer[10];
@@ -41,6 +41,7 @@ int main() {
 
             // Si le master envoie une requête de lecture
             case I2CSlave::ReadAddressed:
+            
                 ///////////////////////////////////////////
                 // Retourner l'état du moteur (sa position ou OFF sous forme d'une chaine de caractères)
                 ///////////////////////////////////////////
